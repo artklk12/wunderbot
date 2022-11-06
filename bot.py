@@ -24,8 +24,11 @@ def login_required(func):
 
 @bot.message_handler(commands=['login'])
 def username_input(message):
-    cursor.execute('SELECT token FROM users WHERE user_tg_id = ?', (message.from_user.id,))
-    token = cursor.fetchone()[0]
+    try:
+        cursor.execute('SELECT token FROM users WHERE user_tg_id = ?', (message.from_user.id,))
+        token = cursor.fetchone()[0]
+    except:
+        token = None
     if not token:
         username = bot.send_message(message.chat.id, "Введите логин")
         bot.register_next_step_handler(username, password_input)
