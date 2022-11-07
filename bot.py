@@ -33,7 +33,7 @@ def username_input(message):
         username = bot.send_message(message.chat.id, "Введите логин")
         bot.register_next_step_handler(username, password_input)
     else:
-        bot.send_message(message.chat.id, "Вы уже вошли аккаунт, используйте /logout, чтобы выйти из него")
+        bot.send_message(message.chat.id, "Вы уже вошли в аккаунт, используйте /logout, чтобы выйти из него")
 
 def password_input(message):
     password = bot.send_message(message.chat.id, "Введите пароль")
@@ -283,7 +283,18 @@ def help_information(message):
         
 Чтобы выйти из аккаунта используйте комманду /logout ,
 
-Если у вас еще нет аккаунта, вы можете создать его, перейдя на страницу регистрации https://wunderlistapp.herokuapp.com/register/ или воспользоваться общим тестовым аккаунтом (Логин: test_user, Пароль: enot1234).
+Если у вас еще нет аккаунта, вы можете создать его, перейдя на страницу регистрации wunderlistapp.herokuapp.com/register/ или воспользоваться общим тестовым аккаунтом (Логин: test_user, Пароль: enot1234).
+    """)
+
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, """
+        Добро пожаловать в бота приложения Wunderlist.
+
+Чтобы воспользоваться полной версий приложения, перейдите на wunderlistapp.herokuapp.com
+        
+Используйте /help для дополнительной информации
     """)
 
 
