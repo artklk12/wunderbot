@@ -153,7 +153,7 @@ def create_task_on_server(token, msg, cat_id):
     requests.post(url=f"https://wunderlistapp.herokuapp.com/api/v1/categories/{cat_id}/",
                   headers={"Authorization": f"Token {token}"},
                   json={"title": msg.text,
-                        "category_id": cat_id})
+                        "category": cat_id})
     keyboard = InlineKeyboardMarkup()
     keyboard.add(InlineKeyboardButton("⬅️Назад", callback_data=f"Show_category:{cat_id}"))
     bot.send_message(msg.from_user.id, "Новая задача успешно создана", reply_markup=keyboard)
